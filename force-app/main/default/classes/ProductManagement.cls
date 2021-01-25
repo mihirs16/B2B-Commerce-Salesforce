@@ -1,5 +1,5 @@
-// ApexRest class for managing Products DB
-@RestResource(urlMapping='/v1/ProductManagement/')
+// ApexRest class for managing Products
+@RestResource(urlMapping='/v1/product/')
 global with sharing class ProductManagement {
 
     // user-defined class for new Product
