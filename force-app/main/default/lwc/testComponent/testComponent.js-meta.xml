@@ -1,0 +1,14 @@
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="myLightningWebComponent">
+    <apiVersion>50.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Button</masterLabel>
+    <targets>
+      <target>lightningCommunity__Page</target>
+      <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+      <targetConfig targets="lightningCommunity__Default">
+          <property name="testButton" type="String" default="defaultText" />
+      </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
