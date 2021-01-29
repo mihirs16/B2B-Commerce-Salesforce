@@ -5,9 +5,13 @@
     <targets>
       <target>lightningCommunity__Page</target>
       <target>lightningCommunity__Default</target>
+      <target>lightning__AppPage</target>
     </targets>
     <targetConfigs>
       <targetConfig targets="lightningCommunity__Default">
+          <property name="testButton" type="String" default="defaultText" />
+      </targetConfig>      
+      <targetConfig targets="lightning__AppPage">
           <property name="testButton" type="String" default="defaultText" />
       </targetConfig>
     </targetConfigs>
