@@ -1,38 +1,37 @@
-.center {
-    text-align: center;
-}
-.link {
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    background-color: #ff6000;
-    color: white;
-    margin-left: 33%;
-    margin-right: 33%;
-    display: inline-block;
-    margin-top: 1em;
-}
-.info {
-    color: black;
-    background-color: #e4f2f8;
-    margin: auto;
-    padding: 15px 10px;
-    text-align: left;
-    width: 300px;
-    border-radius: 5px;
-}
-.code {
-    font-family: monospace;
-}
-.container {
-    margin-top: 30px;
+.card {
+    padding: 1em;
+    -webkit-user-select: none;  
+    -moz-user-select: none;     
+    -ms-user-select: none;      
+    user-select: none;      
 }
 
-img {
-    max-width: 150px;
+.card:hover {
+    background: grey;
+    cursor: pointer;
 }
 
-.greeting {
-    height: 75px;
+.card > div {
+    margin-bottom: 10px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+    width: 500px;
+}
+
+.picture {
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+}
+
+.name {
+    font-size: 20px;
+}
+
+.stock, .price {
+    font-size: 15px;
 }

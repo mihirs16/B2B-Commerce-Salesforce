@@ -17,7 +17,7 @@ const HOST = process.env.API_HOST || 'localhost';
 const PORT = process.env.API_PORT || 3002;
 
 app.get('/api/products', (req,res) => {
-    const soql = `SELECT Id, Name FROM Product__c`;
+    const soql = `SELECT Id, Name, Total_Stock__c, Unit_Price__c FROM Product__c`;
     conn.query(soql, (err, result) => {
         if (err) {
             res.status(500).send({});

@@ -1,26 +1,15 @@
 <template>
-    <!-- LWC sample component <my-greeting> -->
-    <div class="center greeting">
-        <!-- <my-greeting speed="slow"></my-greeting> -->
-        <my-greeting speed="medium"></my-greeting>
-        <!-- <my-greeting speed="fast"></my-greeting> -->
-    </div>
-
-    <div class="center">
-        <img src="./resources/lwc.png" />
-    </div>
-
-    <!-- Page code -->
-    <div class="center">
-        <div class="container">
-            <!-- prettier-ignore -->
-            <p class="info">
-                Edit <strong class="code">src/client/modules/my/app/app.html</strong>
-                <br />and save for live reload.
-            </p>
-        </div>
-        <div>
-            <a href="https://lwc.dev" class="link" target="_blank">Learn LWC</a>
-        </div>
-    </div>
+    <template if:true={productList}>
+        <div class="gallery">
+            <template for:each={productList} for:item="product" for:index="Id">
+              <div class="card" key={product.id}>
+                  <div class="picture"><img src="https://picsum.photos/150" height="150px" /></div>
+                  <div class="name">{product.Name}</div>
+                  <div class="stock">Stock Left: {product.Total_Stock__c}</div>
+                  <div class="price">Price per unit: {product.Unit_Price__c}</div>
+              </div>
+            </template>
+          </div>
+    </template>
 </template>
+  
