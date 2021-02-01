@@ -1,9 +1,5 @@
 .card {
-    padding: 1em;
-    -webkit-user-select: none;  
-    -moz-user-select: none;     
-    -ms-user-select: none;      
-    user-select: none;      
+    padding: 1em;   
 }
 
 .card:hover {
@@ -22,16 +18,3 @@
     width: 500px;
 }
 
-.picture {
-    width: 150px;
-    height: 150px;
-    border: 1px solid black;
-}
-
-.name {
-    font-size: 20px;
-}
-
-.stock, .price {
-    font-size: 15px;
-}

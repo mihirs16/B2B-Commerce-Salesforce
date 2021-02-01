@@ -1,15 +1,12 @@
 <template>
-    <template if:true={productList}>
-        <div class="gallery">
-            <template for:each={productList} for:item="product" for:index="Id">
-              <div class="card" key={product.id}>
-                  <div class="picture"><img src="https://picsum.photos/150" height="150px" /></div>
-                  <div class="name">{product.Name}</div>
-                  <div class="stock">Stock Left: {product.Total_Stock__c}</div>
-                  <div class="price">Price per unit: {product.Unit_Price__c}</div>
-              </div>
+  <template if:true={productList}>
+    <div class="gallery">
+          <template for:each={productList} for:item="product" for:index="Id">
+            <div class="card" key={product.Id}>
+              <my-product product={product}></my-product>
+            </div>
             </template>
-          </div>
-    </template>
+        </div>
+  </template>
 </template>
   

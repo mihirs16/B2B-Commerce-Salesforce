@@ -1,0 +1,40 @@
+<template>
+    <div class="popup">
+        <div class="content">
+            <div class="close">
+                <button onclick={closePopup}>X</button>
+            </div>
+            <ul>
+                <h1>
+                    Product: {product.Name}
+                </h1>
+                <div class="details">
+                    <div>
+                        <img src="https://picsum.photos/200" height="200px" />
+                        <div>
+                            Stock Left: {product.Total_Stock__c}
+                        </div>
+                        <div>
+                            Price per Unit: {product.Unit_Price__c}
+                        </div>
+                        <div>
+                            <input type="number" min="100" step="100">
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <h3>Query</h3>
+                            <textarea></textarea><br>
+                            <button>Ask us!</button>
+                        </div>
+                        <div>
+                            <h3>Negotiate a Bulk Price</h3>
+                            <input type="number"><br>
+                            <button>Ask us!</button>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+</template>

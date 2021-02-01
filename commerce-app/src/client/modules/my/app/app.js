@@ -1,16 +1,14 @@
+// module imports
 import { LightningElement, track } from 'lwc';
 
+// app component
 export default class App extends LightningElement {
 
-    @track productList;
-    @track isProductDetail;
+    @track productList;         // list of fetched products
 
+    // call on render | fetch product list
     connectedCallback() {
-        var requestOptions = {
-            method: 'GET',
-        };
-          
-        fetch("http://localhost:3001/api/products", requestOptions)
+        fetch("http://localhost:3001/api/products", { method: 'GET' })
         .then((response) => {
             response.json()
             .then((result) => {
@@ -19,9 +17,5 @@ export default class App extends LightningElement {
             });
         })
         .catch(error => console.log('error', error));
-    }
-
-    toggleProductDetail () {
-        this.isProductDetail = !this.isProductDetail;
     }
 }

@@ -1,0 +1,13 @@
+.picture {
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+}
+
+.name {
+    font-size: 20px;
+}
+
+.stock, .price {
+    font-size: 15px;
+}
