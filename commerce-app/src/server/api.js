@@ -5,6 +5,7 @@ const express = require('express');
 
 // route imports
 const Product = require('./routes/products');
+const Order = require('./routes/orders');
 
 // init setup
 const app = express();
@@ -16,6 +17,7 @@ const PORT = process.env.API_PORT || 3002;
 
 // router setup
 app.use('/api/products/', Product);
+app.use('/api/orders/', Order);
 
 // start api server
 app.listen(PORT, () => {

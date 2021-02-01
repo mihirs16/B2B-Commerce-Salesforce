@@ -12,6 +12,7 @@ router.get('/all', (req, res) => {
     
     AuthOrg.conn.query(soql, (err, result) => {
         if (err) {
+            console.log(err);
             res.status(500).send({});
         } else {
             res.status(200).send(result);
