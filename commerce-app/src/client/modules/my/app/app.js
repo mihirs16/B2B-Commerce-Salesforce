@@ -16,7 +16,7 @@ export default class App extends LightningElement {
 
     // call on render | fetch product list
     connectedCallback() {
-        fetch("http://localhost:3001/api/products", { method: 'GET' })
+        fetch("http://localhost:3001/api/products/all", { method: 'GET' })
         .then((response) => {
             response.json()
             .then((result) => {

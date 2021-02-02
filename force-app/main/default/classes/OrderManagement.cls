@@ -2,29 +2,16 @@
 @RestResource(urlMapping='/v1/order')
 global with sharing class OrderManagement {
 
-    // global class ThisOrder {
-
-    //     public List<Product__c> Products;
-
-    // }
-
-    // get order by id
+    // get specifiec or all order(s)
     @httpGet
-    global static Order__c getOrders () {
+    global static Opportunity getOrders () {
         Map<String, String> paramsMap = RestContext.request.params;
         String orderID = paramsMap.get('id');
 
-        Order__c orderToReturn = new Order__c();
-        orderToReturn = [SELECT Name FROM Order__c WHERE Id=:orderID];
+        Opportunity orderToReturn = new Opportunity();
+        orderToReturn = [SELECT Name FROM Opportunity WHERE Id=:orderID];
 
         return orderToReturn;
     }
-
-    // // post new order
-    // @httpPost
-    // global static Order newOrder () {
-
-    // }
-
 
 }
