@@ -4,11 +4,11 @@ global with sharing class OrderManagement {
 
     // get specifiec or all order(s)
     @httpGet
-    global static Opportunity getOrders () {
+    global static Opportunity getOpportunities () {
         Map<String, String> paramsMap = RestContext.request.params;
         String orderID = paramsMap.get('id');
 
-        Opportunity orderToReturn = new Opportunity();
+        List<Opportunity> orderToReturn = new Opportunity();
         orderToReturn = [SELECT Name FROM Opportunity WHERE Id=:orderID];
 
         return orderToReturn;
