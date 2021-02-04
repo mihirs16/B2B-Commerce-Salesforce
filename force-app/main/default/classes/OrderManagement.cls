@@ -2,9 +2,13 @@
 @RestResource(urlMapping='/order/for-account')
 global with sharing class OrderManagement {
 
+    // dummy class for POSTing opportunity
     global class RecvOpportunity {
-        global String StageName;
-        global String AccountID;
+
+        global String StageName;                    // name of opportunity's stage
+        global String AccountID;                    // id of parent account
+        global Map<String, Integer> ProductList;    // key = Product ID | value = Quantity
+
     }
 
     // get opportunities for specified account
@@ -28,18 +32,39 @@ global with sharing class OrderManagement {
     @httpPost
     global static Opportunity addOpportunity (RecvOpportunity recvOpportunity) {
 
-        // // get account by id
+        // account to add opportunity for
         Account forAccount = [SELECT Id, Name FROM Account WHERE Id=:recvOpportunity.AccountID];
 
-        // make a new opportunity
-        Opportunity newOpportunity = new Opportunity();
-        newOpportunity.Name = forAccount.Name;
-        newOpportunity.StageName = recvOpportunity.StageName;
-        newOpportunity.CloseDate = System.today().addMonths(2);
-        newOpportunity.AccountId = forAccount.Id;
+        // new opportunity
+        Opportunity newOpportunity = new Opportunity(
+            Name = forAccount.Name,
+            StageName = recvOpportunity.StageName,
+            CloseDate = System.today().addMonths(2),
+            AccountId = forAccount.Id
+        );
 
-        // add to db
+        // save new opportunity
         insert newOpportunity;
+
+        // get pricebook entries for products to add
+        Pricebook2 stdPriceBook = [SELECT Id FROM Pricebook2 WHERE IsStandard=true];        // get standard price book id
+        List<PricebookEntry> forPriceBookEntries = new List<PricebookEntry> ();
+        forPriceBookEntries = [SELECT Id, UnitPrice, Product2Id FROM PriceBookEntry         // get unit price & product id
+                                WHERE Product2Id IN :recvOpportunity.ProductList.keySet()   // for all products received
+                                AND Pricebook2Id = :stdPriceBook.Id];                       // for standard price book
+
+        // new opportunity line items for products
+        for (PricebookEntry thisPricebookEntry : forPriceBookEntries) {
+            OpportunityLineItem thisOppLineItem = new OpportunityLineItem (
+                OpportunityId = newOpportunity.Id,
+                PricebookEntryID = thisPricebookEntry.Id,
+                UnitPrice = thisPricebookEntry.UnitPrice,
+                Quantity = recvOpportunity.ProductList.get(String.valueOf(thisPricebookEntry.Product2Id))
+            );
+
+            // save each opportunity line items
+            insert thisOppLineItem; 
+        }
 
         return newOpportunity;
     }

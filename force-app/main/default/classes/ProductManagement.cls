@@ -1,54 +1,20 @@
 // ApexRest class for managing Products
-@RestResource(urlMapping='/v1/product/')
+@RestResource(urlMapping='/product/for-opp')
 global with sharing class ProductManagement {
 
-    // // user-defined class for new Product
-    // global class ThisProduct {
-
-    //     // fields to set for Product
-    //     public String Name;
-    //     public Double Unit_Price;
-    //     public Integer Total_Stock;
-
-    //     // get product 
-    //     public Product__c getProduct () {
-    //         return new Product__c (
-    //             Name = this.Name,
-    //             Unit_Price__c = this.Unit_Price,
-    //             Total_Stock__c = this.Total_Stock
-    //         );
-    //     }
-
-    // }
-
-    // get all or specified product(s)
+    // get all products for a specific opportunity
     @httpGet    
-    global static List<Product__c> getAllProducts () {
+    global static List<OpportunityLineItem> getAllProductsForOpportunity () {
         Map<String, String> paramsMap = RestContext.request.params;
-        String productID = paramsMap.get('id');
+        String oppId = paramsMap.get('id');
 
-        List<Product__c> productsToReturn = new List<Product__c>();
-        productsToReturn = productID == 'None' ? [SELECT Name from Product__c] : [SELECT Name from Product__c WHERE Id=:productID];
+        // get all opportunity line items for given id
+        List<OpportunityLineItem> productsToReturn = new List<OpportunityLineItem>();
+        productsToReturn = [SELECT ProductCode, ListPrice, UnitPrice, Quantity, TotalPrice 
+                            FROM OpportunityLineItem 
+                            WHERE OpportunityId = :oppId];
 
         return productsToReturn;
     }
-
-    // // add new product(s)
-    // @httpPost
-    // global static List<Product__c> addNewProducts (List<ThisProduct> productList) {
-    //     List<Product__c> newProducts = new List<Product__c>();
-
-    //     for (ThisProduct product : productList) {
-    //         newProducts.add(product.getProduct());
-    //     }
-
-    //     try {
-    //         insert newProducts;
-    //     } catch (DmlException exc) {
-    //         System.debug(exc);   
-    //     }
-        
-    //     return newProducts;        
-    // }
 
 }
