@@ -7,7 +7,7 @@ global with sharing class OrderManagement {
 
         global String StageName;                    // name of opportunity's stage
         global String AccountID;                    // id of parent account
-        global Map<String, Integer> ProductList;    // key = Product ID | value = Quantity
+        global Map<String, Decimal> ProductList;    // key = Product ID | value = Quantity
 
     }
 
