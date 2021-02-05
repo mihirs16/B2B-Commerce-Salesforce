@@ -12,7 +12,7 @@ export default class Details extends LightningElement {
         .then((response) => {
             response.json()
             .then((result) => {
-                console.log(result)
+                console.log(result);
                 this.productDetails = result[0];
             });
         })

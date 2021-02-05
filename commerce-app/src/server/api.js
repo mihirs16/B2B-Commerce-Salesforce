@@ -2,6 +2,7 @@
 const compression = require('compression');
 const helmet = require('helmet');
 const express = require('express');
+const bodyParser = require('body-parser');
 
 // route imports
 const Product = require('./routes/products');
@@ -11,6 +12,7 @@ const Order = require('./routes/orders');
 const app = express();
 app.use(helmet());
 app.use(compression());
+app.use(bodyParser.json());
 
 const HOST = process.env.API_HOST || 'localhost';
 const PORT = process.env.API_PORT || 3002;

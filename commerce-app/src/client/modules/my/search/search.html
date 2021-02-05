@@ -2,13 +2,13 @@
     <form>
         <div class="search">
             <div class="searchbox">
-                Search: <input type="text" id="Query" onchange={handleInput}>
+                Search: <input type="text" id="Query" oninput={handleInput}>
             </div>
             <div class="searchbox">
-                    MinPrice: <input type="number" min="0" step="1000" id="MinPrice" onchange={handleInput}>
+                    MinPrice: <input type="number" min="0" step="1000" id="MinPrice" oninput={handleInput}>
             </div>
             <div class="searchbox">
-                MaxPrice: <input type="number" min="0" step="1000" id="MaxPrice" onchange={handleInput}>
+                MaxPrice: <input type="number" min="0" step="1000" id="MaxPrice" oninput={handleInput}>
             </div>
             <div class="searchbox">
                 <input type="submit" value="Search" onclick={handleSearch}>

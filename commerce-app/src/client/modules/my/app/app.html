@@ -3,11 +3,13 @@
     <my-search onsearchevent={handleSearch}></my-search>    
   </div>
   <div class="gallery">
-    <template for:each={productList} for:item="product" for:index="Id">
-      <div class="card" key={product.Id}>
-        <my-product product={product}></my-product>
-      </div>
+    <template if:true={productList}>
+      <template for:each={productList} for:item="product" for:index="Id">
+        <div class="card" key={product.Id}>
+          <my-product product={product}></my-product>
+        </div>
       </template>
+    </template>
   </div>
 </template>
   

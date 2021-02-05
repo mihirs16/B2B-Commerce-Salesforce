@@ -7,16 +7,37 @@ export default class App extends LightningElement {
     @track productList = [];            // list of products to show
     @track cacheProductList = [];       // list of fetched products
     
-    // handling search input
+    // handling search request
     handleSearch(event) {
-        var SearchQuery = event.detail;
-        if (SearchQuery.Query && SearchQuery.MinPrice && SearchQuery.MaxPrice) {
+        var SearchQuery = {
+            Query: event.detail
+        };
+        
+        console.log("fetch", JSON.stringify(SearchQuery));
+        
+        if (SearchQuery.Query.QueryString && SearchQuery.Query.MinPrice && SearchQuery.Query.MaxPrice) {
+        
             fetch("http://localhost:3001/api/products/search", {
                 method: 'POST',
-                body: SearchQuery
-            }).then((response) => {
-                console.log(response);
-            }).catch(error => console.log(error));
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(SearchQuery)
+            })
+            .then((response) => {
+            
+                response.json()
+                .then((result) => {
+                    console.log(result);
+            
+                    result.forEach(element => {
+                        element.Id = element.Product2Id;
+                    });
+                    this.productList = result;
+                })
+            
+            })
+            .catch(error => console.log(error));
         }
     }
 

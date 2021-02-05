@@ -53,7 +53,7 @@ global with sharing class CatalogManagement {
 
         // filter search results by soql
         Pricebook2 stdPriceBook = [SELECT Id FROM Pricebook2 WHERE IsStandard=true];
-        List<PricebookEntry> filterResults = [SELECT PricebookEntry.Name, UnitPrice FROM PricebookEntry 
+        List<PricebookEntry> filterResults = [SELECT PricebookEntry.Name, UnitPrice, Product2Id FROM PricebookEntry 
                                                 WHERE Product2Id IN :productTotalList
                                                 AND UnitPrice >= :Query.MinPrice
                                                 AND UnitPrice <= :Query.MaxPrice

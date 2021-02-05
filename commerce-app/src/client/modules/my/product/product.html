@@ -2,7 +2,6 @@
     <div onclick={toggleDetailsPopup}>
         <div class="picture"><img src="https://picsum.photos/150" height="150px" /></div>
         <div class="name">{product.Name}</div>
-        <!-- <div class="price">Price per unit: {product.UnitPrice}</div> -->
     </div>
     <template if:true={isProductDetail}>
         <my-details oncloseevent={toggleDetailsPopup} product={product}></my-details>

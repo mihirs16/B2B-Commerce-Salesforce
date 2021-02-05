@@ -20,6 +20,7 @@ router.get('/all', (req, res) => {
 
 // get specific product
 router.get('/:id', (req, res) => {
+    console.log('/catalog?prod-id='+req.params.id);
     AuthOrg.conn.apex.get('/catalog?prod-id='+req.params.id, (err, result) => {
         if (err) {
             console.log(err);
@@ -32,6 +33,7 @@ router.get('/:id', (req, res) => {
 
 // search products
 router.post('/search', (req, res) => {
+    console.log(req.body);
     AuthOrg.conn.apex.post('/catalog', req.body, (err, result) => {
         if (err) {
             console.log(err);
