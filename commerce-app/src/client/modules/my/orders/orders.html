@@ -1,0 +1,23 @@
+<template>
+    <div class="orderPage">
+        <div class="content">
+            <div class="closePopup">
+                <button onclick={handleClosePopup}>X</button>
+            </div>
+            <h2>Orders</h2>
+            <template if:true={opportunityList}>
+                <template for:each={opportunityList} for:item='order' for:index="Id">
+                    <div class='eachOrder' key={order.Id}>
+                        <h4>{order.Id}</h4>
+                        <ul>
+                            <li>Order Number: {order.Id}</li>
+                            <li>Status: {order.StageName}</li>
+                            <li>Amount: {order.Amount}</li>
+                            <li>Expiring On:{order.CloseDate}</li>
+                        </ul>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </div>
+</template>

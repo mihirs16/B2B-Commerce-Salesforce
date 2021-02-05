@@ -7,6 +7,7 @@ export default class Product extends LightningElement {
     @api product;
     @track isProductDetail;
 
+    // toggle product details popup
     toggleDetailsPopup () {
         this.isProductDetail = !this.isProductDetail;
     }

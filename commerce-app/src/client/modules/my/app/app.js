@@ -6,7 +6,14 @@ export default class App extends LightningElement {
 
     @track productList = [];            // list of products to show
     @track cacheProductList = [];       // list of fetched products
+    @track isOrderPopup;
+    accountId;                          // account id for current user
     
+    // toggle order popup
+    toggleOrdersPopup () {
+        this.isOrderPopup = !this.isOrderPopup;
+    }
+
     // handling search request
     handleSearch(event) {
         var SearchQuery = {
@@ -28,7 +35,7 @@ export default class App extends LightningElement {
             
                 response.json()
                 .then((result) => {
-                    console.log(result);
+                    // console.log(result);
             
                     result.forEach(element => {
                         element.Id = element.Product2Id;
@@ -43,11 +50,13 @@ export default class App extends LightningElement {
 
     // call on render | fetch product list
     connectedCallback() {
+        this.accountId = '0015g000004iUKlAAM';
+
         fetch("http://localhost:3001/api/products/all", { method: 'GET' })
         .then((response) => {
             response.json()
             .then((result) => {
-                console.log(result)
+                // console.log(result)
                 this.productList = result;
                 this.cacheProductList = this.productList;
             });

@@ -18,3 +18,13 @@
     width: 500px;
 }
 
+.header {
+    display: flex;
+}
+
+.orderPopupButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

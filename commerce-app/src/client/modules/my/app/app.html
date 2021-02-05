@@ -1,6 +1,9 @@
 <template>
   <div class="header">
-    <my-search onsearchevent={handleSearch}></my-search>    
+    <my-search onsearchevent={handleSearch}></my-search>
+    <div class="orderPopupButton">
+      <button onclick={toggleOrdersPopup}>Orders</button>
+    </div>   
   </div>
   <div class="gallery">
     <template if:true={productList}>
@@ -9,6 +12,11 @@
           <my-product product={product}></my-product>
         </div>
       </template>
+    </template>
+  </div>
+  <div>
+    <template if:true={isOrderPopup}>
+      <my-orders account-id={accountId} oncloseevent={toggleOrdersPopup}></my-orders>
     </template>
   </div>
 </template>

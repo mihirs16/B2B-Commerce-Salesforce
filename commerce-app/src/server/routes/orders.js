@@ -7,8 +7,8 @@ const router = express.Router();
 
 // router
 // get all orders
-router.get('/all', (req, res) => {
-    AuthOrg.conn.apex.get('/v1/order?id=a015g000006UhXVAA0', (err, result) => {
+router.get('/all/:id', (req, res) => {
+    AuthOrg.conn.apex.get('/order/for-account?accid='+req.params.id, (err, result) => {
         if (err) {
             console.log(err);
             res.status(500).send(err);
