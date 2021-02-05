@@ -8,9 +8,7 @@ const router = express.Router();
 // routes
 // get all products
 router.get('/all', (req, res) => {
-    const soql = `SELECT Id, Name, Total_Stock__c, Unit_Price__c FROM Product__c`;
-    
-    AuthOrg.conn.query(soql, (err, result) => {
+    AuthOrg.conn.apex.get('/catalog', (err, result) => {
         if (err) {
             console.log(err);
             res.status(500).send({});
@@ -19,6 +17,30 @@ router.get('/all', (req, res) => {
         }
     });
 });
+
+// get specific product
+router.get('/:id', (req, res) => {
+    AuthOrg.conn.apex.get('/catalog?prod-id='+req.params.id, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send({});
+        } else {
+            res.status(200).send(result);
+        }
+    });
+});
+
+// search products
+router.post('/search', (req, res) => {
+    AuthOrg.conn.apex.post('/catalog', req.body, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send({});
+        } else {
+            res.status(200).send(result);
+        }
+    });
+})
 
 // export router
 module.exports = router;

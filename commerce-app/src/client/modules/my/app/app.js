@@ -9,9 +9,15 @@ export default class App extends LightningElement {
     
     // handling search input
     handleSearch(event) {
-        this.productList = this.cacheProductList.filter(
-            product => product.Name.toLowerCase().includes(event.detail)
-        );
+        var SearchQuery = event.detail;
+        if (SearchQuery.Query && SearchQuery.MinPrice && SearchQuery.MaxPrice) {
+            fetch("http://localhost:3001/api/products/search", {
+                method: 'POST',
+                body: SearchQuery
+            }).then((response) => {
+                console.log(response);
+            }).catch(error => console.log(error));
+        }
     }
 
     // call on render | fetch product list
@@ -21,7 +27,7 @@ export default class App extends LightningElement {
             response.json()
             .then((result) => {
                 console.log(result)
-                this.productList = result.records;
+                this.productList = result;
                 this.cacheProductList = this.productList;
             });
         })

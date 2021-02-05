@@ -1,3 +1,9 @@
+.search {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 1em;
+}
+
 .searchbox {
     font-size: 20px;
     padding: 10px;
