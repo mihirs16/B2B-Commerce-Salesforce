@@ -21,9 +21,8 @@ export default class Orders extends LightningElement {
         .then((response) => {
             response.json()
             .then((result) => {
-                console.log(result);
                 this.opportunityList = result;
-            })
+            });
         })
         .catch(err => console.log(err));
     }

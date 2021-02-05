@@ -6,12 +6,18 @@ export default class App extends LightningElement {
 
     @track productList = [];            // list of products to show
     @track cacheProductList = [];       // list of fetched products
-    @track isOrderPopup;
+    @track isOrderPopup;                // state of orders popup
+    @track isCartPopup;                 // state of cart popup
     accountId;                          // account id for current user
     
     // toggle order popup
     toggleOrdersPopup () {
         this.isOrderPopup = !this.isOrderPopup;
+    }
+
+    // toggle cart popup
+    toggleCartPopup () {
+        this.isCartPopup = !this.isCartPopup;
     }
 
     // handling search request
@@ -35,9 +41,7 @@ export default class App extends LightningElement {
             
                 response.json()
                 .then((result) => {
-                    // console.log(result);
-            
-                    result.forEach(element => {
+                   result.forEach(element => {
                         element.Id = element.Product2Id;
                     });
                     this.productList = result;
@@ -56,7 +60,6 @@ export default class App extends LightningElement {
         .then((response) => {
             response.json()
             .then((result) => {
-                // console.log(result)
                 this.productList = result;
                 this.cacheProductList = this.productList;
             });

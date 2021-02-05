@@ -2,6 +2,9 @@
   <div class="header">
     <my-search onsearchevent={handleSearch}></my-search>
     <div class="orderPopupButton">
+      <button onclick={toggleCartPopup}>Cart</button>
+    </div>
+    <div class="orderPopupButton">
       <button onclick={toggleOrdersPopup}>Orders</button>
     </div>   
   </div>
@@ -9,14 +12,17 @@
     <template if:true={productList}>
       <template for:each={productList} for:item="product" for:index="Id">
         <div class="card" key={product.Id}>
-          <my-product product={product}></my-product>
+          <my-product account-id={accountId} product={product}></my-product>
         </div>
       </template>
     </template>
   </div>
-  <div>
+  <div class="popups">
     <template if:true={isOrderPopup}>
       <my-orders account-id={accountId} oncloseevent={toggleOrdersPopup}></my-orders>
+    </template>
+    <template if:true={isCartPopup}>
+      <my-cart account-id={accountId} oncloseevent={toggleCartPopup}></my-cart>
     </template>
   </div>
 </template>

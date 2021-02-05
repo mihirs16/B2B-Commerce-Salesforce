@@ -13,9 +13,9 @@
 
 .gallery {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 1em;
-    width: 500px;
+    width: 800px;
 }
 
 .header {
@@ -26,5 +26,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.orderPopupButton > button {
+    padding: 10px;
 }
 

@@ -64,13 +64,3 @@ global with sharing class CatalogManagement {
     }
 
 }
-
-/* 
-{
-    "Query": {
-        "QueryString": "SLA"
-        "MinPrice": 4000,
-        "MaxPrice": 70000
-    }
-}
-*/

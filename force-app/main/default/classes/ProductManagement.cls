@@ -50,4 +50,26 @@ global with sharing class ProductManagement {
 
         return newLineItem;
     }
+
+    // delete product from opportunity
+    @httpDelete
+    global static OpportunityLineItem delProductFromOpportunity () {
+        Map<String, String> paramsMap = RestContext.request.params;
+        String oppId = paramsMap.get('oppId');
+        String productId = paramsMap.get('prodId');
+
+        OpportunityLineItem productToDel = new OpportunityLineItem ();
+
+        if (oppId != null && productId != null) {
+            
+            // product to be deleted
+            productToDel = [SELECT Id 
+                            FROM OpportunityLineItem 
+                            WHERE Product2Id = :productId
+                            AND OpportunityId = :oppId];
+
+        }
+
+        return productToDel;
+    }
 }

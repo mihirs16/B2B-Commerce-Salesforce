@@ -19,8 +19,9 @@
 }
 
 .eachOrder {
-    border-left: 2px solid blue;
+    border-left: 2px solid black;
     padding: 10px;
+    margin-bottom: 1em;
 }
 
 .eachOrder:hover {

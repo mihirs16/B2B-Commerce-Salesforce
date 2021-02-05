@@ -16,18 +16,19 @@
                                 Price per Unit: {productDetails.UnitPrice}
                             </div>
                         </template>
-                        <div>
-                            <input type="number" min="100" step="100">
-                        </div>
-                        <div>
-                            <button>Add to Cart</button>
-                        </div>
+
                     </div>
                     <div>
-                        <div>
+                        <!-- <div>
                             <h3>Query</h3>
                             <textarea></textarea><br>
                             <button>Ask us!</button>
+                        </div> -->
+                        <div>
+                            <input type="number" min="100" step="100" onchange={handleQuantity}>
+                        </div>
+                        <div>
+                            <button onclick={addToCart}>Add to Cart</button>
                         </div>
                     </div>
                 </div>

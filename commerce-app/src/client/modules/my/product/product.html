@@ -4,6 +4,6 @@
         <div class="name">{product.Name}</div>
     </div>
     <template if:true={isProductDetail}>
-        <my-details oncloseevent={toggleDetailsPopup} product={product}></my-details>
+        <my-details oncloseevent={toggleDetailsPopup} product={product} account-id={accountId}></my-details>
     </template>
 </template>

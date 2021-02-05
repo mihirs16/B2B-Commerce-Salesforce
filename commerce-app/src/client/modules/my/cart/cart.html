@@ -1,0 +1,19 @@
+<template>
+    <div class="popup">
+        <div class="content">
+            <h1>Cart</h1>
+            <template if:true={cartDetails}>
+                <div>
+                    <template if:true={productList}>
+                    {cartDetails.StageName}
+                        <template for:each={productList} for:item="product" for:index="Id">
+                            <div class="card" key={product.Id}>
+                                <h3>{product.ProductCode}</h3>
+                            </div>
+                        </template>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

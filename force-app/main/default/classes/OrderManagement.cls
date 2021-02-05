@@ -17,12 +17,34 @@ global with sharing class OrderManagement {
         Map<String, String> paramsMap = RestContext.request.params;
         String accountID = paramsMap.get('accid');                          
         String opportunityID = paramsMap.get('oppid');
+        String notClosed = paramsMap.get('not-closed');
 
         List<Opportunity> orderToReturn = new List<Opportunity>();          
-        if (accountID != null) {                                                        // check for account id
-            orderToReturn = opportunityID == null ?                                     // check for opportunity id
-            [SELECT Name, CloseDate, StageName, Amount FROM Opportunity WHERE accountID=:accountID]:       // return all opportunities if no id
-            [SELECT Name, CloseDate, StageName, Amount FROM Opportunity WHERE Id=:opportunityID];          // return opportunity by id
+        
+        // check for account id
+        if (accountID != null) {
+
+            // check for opportunity id
+            if (opportunityID == null) {
+            
+                // check if opportunity should be empty
+                if (notClosed == 'true') {
+                    orderToReturn = [SELECT Name, CloseDate, StageName, Amount 
+                                        FROM Opportunity 
+                                        WHERE accountID = :accountID
+                                        AND StageName != 'Closed Won'
+                                        AND StageName != 'Closed Lost'];
+                } else {
+                    orderToReturn = [SELECT Name, CloseDate, StageName, Amount 
+                                        FROM Opportunity 
+                                        WHERE accountID = :accountID];
+                }
+                
+            } else {
+                orderToReturn = [SELECT Name, CloseDate, StageName, Amount 
+                                    FROM Opportunity 
+                                    WHERE Id = :opportunityID];
+            }
         }
 
         return orderToReturn;
