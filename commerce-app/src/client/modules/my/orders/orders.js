@@ -24,6 +24,9 @@ export default class Orders extends LightningElement {
                 this.opportunityList = result;
             });
         })
-        .catch(err => console.log(err));
+        .catch((err) => {
+            console.log(err);
+            alert('Something went wrong.');
+        });
     }
 }

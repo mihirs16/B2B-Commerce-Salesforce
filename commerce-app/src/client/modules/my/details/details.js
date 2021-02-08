@@ -23,7 +23,10 @@ export default class Details extends LightningElement {
                 this.productDetails = result[0];
             });
         })
-        .catch(error => console.log('error', error));
+        .catch((err) => {
+            console.log(err);
+            alert('Something went wrong.');
+        });
     }
 
     // dispatch event | toggle product details popup
@@ -48,10 +51,12 @@ export default class Details extends LightningElement {
             response.json()
             .then((result) => {
                 console.log(result);
+                alert('Product added to cart.');
             })
         })
         .catch((err) => {
             console.log(err);
+            alert('Something went wrong.');
         });
     }
 
@@ -69,9 +74,13 @@ export default class Details extends LightningElement {
             response.json()
             .then((result) => {
                 console.log(result);
+                alert('Product added to cart.')
             })
         })
-        .catch(err => console.log(err));
+        .catch((err) => {
+            console.log(err);
+            alert('Something went wrong.');
+        });
     }
 
     // call on render | fetch product list
@@ -109,7 +118,10 @@ export default class Details extends LightningElement {
                 }
             });
         })
-        .catch(error => console.log('error', error));
+        .catch((err) => {
+            console.log(err);
+            alert('Something went wrong.');
+        });
     }
 
 }

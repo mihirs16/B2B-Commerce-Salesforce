@@ -28,10 +28,14 @@ export default class Cart extends LightningElement {
             response.json()
             .then((result) => {
                 console.log(result);
+                alert('Product was deleted successfully.');
                 this.getCartProducts({ Id: cartItemToDel.oppId });
             })
         })
-        .catch(err => console.log(err));
+        .catch((err) => {
+            console.log(err);
+            alert('Something went wrong.');
+        });
     }
 
     // fetch all products currently in opportunity
@@ -46,7 +50,10 @@ export default class Cart extends LightningElement {
                 this.productList = result;
             })
         })
-        .catch(err => console.log(err));
+        .catch((err) => {
+            console.log(err);
+            alert('Something went wrong.');
+        });
 
         return { order: opp };
     }
@@ -64,7 +71,10 @@ export default class Cart extends LightningElement {
                 this.cartDetails = result[0];
             });
         })
-        .catch(err => console.log(err));
+        .catch((err) => {
+            console.log(err);
+            alert('Something went wrong.');
+        });
 
     }
 
