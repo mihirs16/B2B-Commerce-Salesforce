@@ -10,7 +10,7 @@ global with sharing class ProductManagement {
 
         // get all opportunity line items for given id
         List<OpportunityLineItem> productsToReturn = new List<OpportunityLineItem>();
-        productsToReturn = [SELECT ProductCode, ListPrice, UnitPrice, Quantity, TotalPrice 
+        productsToReturn = [SELECT ProductCode, Product2.Name, ListPrice, UnitPrice, Quantity, TotalPrice 
                             FROM OpportunityLineItem 
                             WHERE OpportunityId = :oppId];
 
@@ -65,8 +65,10 @@ global with sharing class ProductManagement {
             // product to be deleted
             productToDel = [SELECT Id 
                             FROM OpportunityLineItem 
-                            WHERE Product2Id = :productId
+                            WHERE Id = :productId
                             AND OpportunityId = :oppId];
+
+            delete productToDel;
 
         }
 

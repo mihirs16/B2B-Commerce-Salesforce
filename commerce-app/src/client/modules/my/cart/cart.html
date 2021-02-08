@@ -1,6 +1,9 @@
 <template>
     <div class="popup">
         <div class="content">
+            <div class='close'>
+                <button onclick={closeCartPopup}>X</button>
+            </div>
             <h1>Cart</h1>
             <template if:true={cartDetails}>
                 <div>
@@ -8,7 +11,9 @@
                     {cartDetails.StageName}
                         <template for:each={productList} for:item="product" for:index="Id">
                             <div class="card" key={product.Id}>
-                                <h3>{product.ProductCode}</h3>
+                                <img src="https://picsum.photos/200" height="200px" />
+                                <h3>{product.Product2.Name}</h3>
+                                <button data-item={product.Id} onclick={delCartItem}>Delete</button>
                             </div>
                         </template>
                     </template>

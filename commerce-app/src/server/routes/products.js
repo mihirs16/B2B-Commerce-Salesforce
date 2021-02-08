@@ -46,6 +46,19 @@ router.post('/search', (req, res) => {
 router.post('/add-to-cart/:id', (req, res) => {
     AuthOrg.conn.apex.post('/product/for-opp?id='+req.params.id, req.body, (err, result) => {
         if (err) {
+            console.log(err);
+            res.status(500).send(err);
+        } else {
+            res.status(200).send(result);
+        }
+    });
+});
+
+// delete product from cart
+router.post('/del-from-cart', (req, res) => {
+    AuthOrg.conn.apex.delete('/product/for-opp?oppId='+req.body.oppId+'&prodId='+req.body.prodId, (err, result) => {
+        if (err) {
+            console.log(err);
             res.status(500).send(err);
         } else {
             res.status(200).send(result);
